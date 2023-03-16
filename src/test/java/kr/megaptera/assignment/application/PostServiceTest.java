@@ -48,11 +48,11 @@ public class PostServiceTest {
     @Test
     void getPostSuccess() {
         // given
-        Post expected = new Post(1L, Title.of("제목"), Author.of("Harry"), Content.of("내용"));
-        postRepository.save(expected);
+        Post expected = new Post(Title.of("제목"), Author.of("Harry"), Content.of("내용"));
+        Post saved = postRepository.save(expected);
 
         // when
-        PostResponse result = postService.getPost("1");
+        PostResponse result = postService.getPost(saved.getId().toString());
 
         // then
         assertThat(result.getId()).isEqualTo(expected.getId().toString());
