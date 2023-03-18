@@ -61,6 +61,7 @@ public class Post {
         this.title = title;
         this.author = author;
         this.content = content;
+        this.comments = new ArrayList<>();
     }
 
     public Post(Title title, Author author, Content content) {
@@ -68,6 +69,7 @@ public class Post {
         this.title = title;
         this.author = author;
         this.content = content;
+        this.comments = new ArrayList<>();
     }
 
     public String id() {
