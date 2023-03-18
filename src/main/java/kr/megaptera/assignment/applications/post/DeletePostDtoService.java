@@ -2,7 +2,7 @@ package kr.megaptera.assignment.applications.post;
 
 import jakarta.transaction.*;
 import kr.megaptera.assignment.exceptions.*;
-import kr.megaptera.assignment.models.post.*;
+import kr.megaptera.assignment.models.*;
 import kr.megaptera.assignment.repositories.*;
 import org.springframework.stereotype.*;
 
@@ -15,12 +15,10 @@ public class DeletePostDtoService {
         this.postRepository = postRepository;
     }
 
-    public void delete(String id) {
 
-        Post post = postRepository.findById(PostId.of(id))
-                .orElseThrow(() -> new PostNotFound());
+    public void delete(String id) {
+        Post post = postRepository.findById(id).orElseThrow(PostNotFound::new);
 
         postRepository.delete(post);
-
     }
 }

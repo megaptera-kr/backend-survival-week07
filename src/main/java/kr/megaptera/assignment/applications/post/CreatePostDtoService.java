@@ -1,7 +1,7 @@
 package kr.megaptera.assignment.applications.post;
 
 import kr.megaptera.assignment.dtos.post.*;
-import kr.megaptera.assignment.models.post.*;
+import kr.megaptera.assignment.models.*;
 import kr.megaptera.assignment.repositories.*;
 import org.springframework.stereotype.*;
 
@@ -13,14 +13,13 @@ public class CreatePostDtoService {
         this.postRepository = postRepository;
     }
 
+
     public PostDTO create(PostCreateDTO postCreateDTO) {
-        Post saved = postRepository.save(
-                new Post(
-                        postCreateDTO.getTitle(),
-                        postCreateDTO.getAuthor(),
-                        MultilineText.of(postCreateDTO.getContent())
-                )
-        );
-        return new PostDTO(saved);
+        Post post = new Post(
+                Title.of(postCreateDTO.getTitle()),
+                Author.of(postCreateDTO.getAuthor()),
+                Content.of(postCreateDTO.getContent()));
+        postRepository.save(post);
+        return new PostDTO(post);
     }
 }

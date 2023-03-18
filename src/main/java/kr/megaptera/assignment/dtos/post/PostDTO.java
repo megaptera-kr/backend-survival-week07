@@ -1,6 +1,6 @@
 package kr.megaptera.assignment.dtos.post;
 
-import kr.megaptera.assignment.models.post.*;
+import kr.megaptera.assignment.models.*;
 
 public class PostDTO {
     private String id;
@@ -20,12 +20,12 @@ public class PostDTO {
 
     public PostDTO(Post post) {
         this(
-                post.id().toString(),
-                post.title(),
-                post.author(),
-                post.content().toString()
-        );
+                post.id(),
+                post.title().toString(),
+                post.author().toString(),
+                post.content().toString());
     }
+
 
     public String getId() {
         return id;

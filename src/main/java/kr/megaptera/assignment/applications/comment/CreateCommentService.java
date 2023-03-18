@@ -2,8 +2,8 @@ package kr.megaptera.assignment.applications.comment;
 
 import jakarta.transaction.*;
 import kr.megaptera.assignment.dtos.comment.*;
-import kr.megaptera.assignment.models.comment.*;
-import kr.megaptera.assignment.models.post.*;
+import kr.megaptera.assignment.exceptions.*;
+import kr.megaptera.assignment.models.*;
 import kr.megaptera.assignment.repositories.*;
 import org.springframework.stereotype.*;
 
@@ -11,22 +11,16 @@ import org.springframework.stereotype.*;
 @Transactional
 public class CreateCommentService {
 
-    private CommentRepository commentRepository;
+    private PostRepository postRepository;
 
-    public CreateCommentService(CommentRepository commentRepository) {
-        this.commentRepository = commentRepository;
+    public CreateCommentService(PostRepository postRepository) {
+        this.postRepository = postRepository;
     }
 
-    public CommentDTO create(String postId,
-                             CommentCreateDTO commentCreateDTO) {
-        Comment comment = new Comment(
-                PostId.of(postId),
-                commentCreateDTO.getAuthor(),
-                commentCreateDTO.getContent()
-        );
-
-        Comment saved = commentRepository.save(comment);
-
-        return new CommentDTO(saved);
+    public CommentDTO create(String postId, CommentCreateDTO commentCreateDTO) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(PostNotFound::new);
+        Comment comment = post.addComment(commentCreateDTO);
+        return new CommentDTO(comment);
     }
 }

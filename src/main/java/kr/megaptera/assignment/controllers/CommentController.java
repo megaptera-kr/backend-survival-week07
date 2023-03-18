@@ -49,20 +49,20 @@ public class CommentController {
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(
-            @PathVariable String commentId,
+            @PathVariable String id,
             @RequestParam String postId,
             @RequestBody CommentUpdateDTO commentUpdateDTO
     ) {
-        updateCommentService.update(commentId, postId, commentUpdateDTO);
+        updateCommentService.update(id, postId, commentUpdateDTO);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(
-            @PathVariable String commentId,
+            @PathVariable String id,
             @RequestParam String postId
     ) {
-        deleteCommentService.delete(commentId, postId);
+        deleteCommentService.delete(id, postId);
     }
 
     @ExceptionHandler(CommentNotFound.class)

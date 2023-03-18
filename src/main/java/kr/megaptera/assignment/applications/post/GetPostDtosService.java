@@ -2,7 +2,7 @@ package kr.megaptera.assignment.applications.post;
 
 import jakarta.transaction.*;
 import kr.megaptera.assignment.dtos.post.*;
-import kr.megaptera.assignment.models.post.*;
+import kr.megaptera.assignment.models.*;
 import kr.megaptera.assignment.repositories.*;
 import org.springframework.stereotype.*;
 
