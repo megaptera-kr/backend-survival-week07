@@ -1,8 +1,8 @@
 # 아래에 데이터베이스를 세팅해주세요. (포트 번호에 주의해주세요)
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: hoonsworld
+    url: jdbc:h2:mem:test
+    username: sa
     password:
   jpa:
     hibernate:
