@@ -22,6 +22,7 @@ public class GetPostService {
     Optional<PostEntity> post = postRepository.findById(id);
     if (post.isEmpty()) {
       throw new PostNotFound();
+      //
     }
     return PostResponseDto.of(post.get());
   }
