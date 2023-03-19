@@ -9,14 +9,16 @@ import kr.megaptera.assignment.dtos.PostUpdateDto;
 import kr.megaptera.assignment.models.Post;
 import kr.megaptera.assignment.models.PostId;
 import kr.megaptera.assignment.repositories.PostRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PostService {
 
-    @Autowired
     private PostRepository postRepository;
+
+    public PostService(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
 
     // 게시글 전체 조회 메서드
     @Transactional

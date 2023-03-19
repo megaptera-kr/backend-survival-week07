@@ -44,6 +44,13 @@ public class Post {
     public Post() {
     }
 
+    public Post(PostId id, String title, String author, String content) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.content = content;
+    }
+
     public Post(String title, String author, String content) {
         this.id = PostId.generate();
         this.title = title;
