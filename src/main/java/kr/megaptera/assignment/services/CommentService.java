@@ -44,7 +44,7 @@ public class CommentService {
     @Transactional
     public CommentDto updateComment(String commentId, CommentUpdateDto commentUpdateDto) {
         Comment updateComment = commentRepository.findById(CommentId.of(commentId)).get();
-        updateComment.update(commentUpdateDto.getAuthor(), commentUpdateDto.getContent());
+        updateComment.update(commentUpdateDto.getContent());
 
         commentRepository.save(updateComment);
 

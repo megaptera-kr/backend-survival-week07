@@ -58,8 +58,7 @@ public class Comment {
         return new CommentDto(this.id.toString(), this.author, this.content);
     }
 
-    public void update(String author, String content) {
-        this.author = author;
+    public void update(String content) {
         this.content = content;
     }
 }
