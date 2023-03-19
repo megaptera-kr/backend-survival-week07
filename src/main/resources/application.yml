@@ -1,12 +1,14 @@
 # 아래에 데이터베이스를 세팅해주세요. (포트 번호에 주의해주세요)
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/postgres-homework7
     username: postgres
     password: password
   jpa:
     hibernate:
       ddl-auto: create
+      show_sql: true
+      format_sql: true
 server:
   servlet:
     encoding:
