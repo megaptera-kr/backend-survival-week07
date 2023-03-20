@@ -43,7 +43,7 @@ public class PostController {
 
     // 게시글 상세 조회 API
     @GetMapping("/{postId}")
-    public PostDto getPostDetail(@PathVariable String postId) throws Exception {
+    public PostDto getPostDetail(@PathVariable String postId){
         return postService.getPostDetail(postId);
     }
 

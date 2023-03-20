@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PostRepository extends JpaRepository<Post, String> {
-
-    Optional<Post> findById(PostId id);
+public interface PostRepository extends JpaRepository<Post, PostId> {
     // TODO: JPA 이용해서 과제를 완성해 주세요.
 }

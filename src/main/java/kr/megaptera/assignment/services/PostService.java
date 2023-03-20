@@ -6,6 +6,7 @@ import java.util.Optional;
 import kr.megaptera.assignment.dtos.PostCreateDto;
 import kr.megaptera.assignment.dtos.PostDto;
 import kr.megaptera.assignment.dtos.PostUpdateDto;
+import kr.megaptera.assignment.exceptions.PostNotFound;
 import kr.megaptera.assignment.models.Post;
 import kr.megaptera.assignment.models.PostId;
 import kr.megaptera.assignment.repositories.PostRepository;
@@ -37,14 +38,10 @@ public class PostService {
 
     // 게시글 상세 조회 메서드
     @Transactional
-    public PostDto getPostDetail(String id) throws Exception {
-        Optional<Post> optionalPost = postRepository.findById(PostId.of(id));
+    public PostDto getPostDetail(String id) {
+        Post post = postRepository.findById(PostId.of(id)).orElseThrow(PostNotFound::new);
 
-        if (optionalPost.isPresent()) {
-            return optionalPost.get().toDto();
-        } else {
-            throw new Exception();
-        }
+        return post.toDto();
     }
 
     public PostDto updatePost(String postId, PostUpdateDto postUpdateDto) throws Exception {
