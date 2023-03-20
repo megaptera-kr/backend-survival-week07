@@ -1,10 +1,15 @@
 package kr.megaptera.assignment.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import java.util.List;
+import java.util.Optional;
+
+import kr.megaptera.assignment.dtos.PostCreateDto;
 import kr.megaptera.assignment.dtos.PostDto;
 import kr.megaptera.assignment.models.Post;
 import kr.megaptera.assignment.models.PostId;
@@ -44,6 +49,39 @@ public class PostServiceTest {
 
         // Then : 결과값 확인
         assertThat(postList).hasSize(1);
+    }
+
+    @Test
+    @DisplayName("게시물 생성 테스트")
+    void createPost(){
+        // Given : CreateDto 를 입력받았다.
+        PostCreateDto newPostCreateDto = new PostCreateDto("굉장한제목", "작성자", "엄청난내용");
+
+        // When : Service 메서드 호출
+        postService.savePost(newPostCreateDto);
+
+        // Then : 레포지토리에서 메서드가 호출되었는지 확인
+        verify(postRepository).saveAndFlush(any(Post.class));
+    }
+
+    @Test
+    @DisplayName("게시물 상세 조회 테스트")
+    void getDetailPost(){
+        PostId postId = new PostId("POST0001");
+        given(postRepository.findById(postId))
+                .willReturn(Optional.of(new Post(
+                        postId,
+                        "제목",
+                        "작성자",
+                        "내용"
+                )));
+
+        PostDto postDto = postService.getPostDetail(postId.toString());
+
+        assertThat(postDto.getId()).isEqualTo(postId.toString());
+        assertThat(postDto.getTitle()).isEqualTo("제목");
+        assertThat(postDto.getAuthor()).isEqualTo("작성자");
+        assertThat(postDto.getContent()).isEqualTo("내용");
     }
 
 }
