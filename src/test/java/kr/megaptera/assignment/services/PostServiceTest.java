@@ -8,9 +8,9 @@ import static org.mockito.Mockito.verify;
 
 import java.util.List;
 import java.util.Optional;
-
 import kr.megaptera.assignment.dtos.PostCreateDto;
 import kr.megaptera.assignment.dtos.PostDto;
+import kr.megaptera.assignment.dtos.PostUpdateDto;
 import kr.megaptera.assignment.models.Post;
 import kr.megaptera.assignment.models.PostId;
 import kr.megaptera.assignment.repositories.PostRepository;
@@ -53,7 +53,7 @@ public class PostServiceTest {
 
     @Test
     @DisplayName("게시물 생성 테스트")
-    void createPost(){
+    void createPost() {
         // Given : CreateDto 를 입력받았다.
         PostCreateDto newPostCreateDto = new PostCreateDto("굉장한제목", "작성자", "엄청난내용");
 
@@ -66,15 +66,15 @@ public class PostServiceTest {
 
     @Test
     @DisplayName("게시물 상세 조회 테스트")
-    void getDetailPost(){
+    void getDetailPost() {
         PostId postId = new PostId("POST0001");
         given(postRepository.findById(postId))
-                .willReturn(Optional.of(new Post(
-                        postId,
-                        "제목",
-                        "작성자",
-                        "내용"
-                )));
+            .willReturn(Optional.of(new Post(
+                postId,
+                "제목",
+                "작성자",
+                "내용"
+            )));
 
         PostDto postDto = postService.getPostDetail(postId.toString());
 
@@ -82,6 +82,40 @@ public class PostServiceTest {
         assertThat(postDto.getTitle()).isEqualTo("제목");
         assertThat(postDto.getAuthor()).isEqualTo("작성자");
         assertThat(postDto.getContent()).isEqualTo("내용");
+    }
+
+    @Test
+    @DisplayName("게시물 업데이트 테스트")
+    void updatePost() {
+        // Given : repo에서 어떤 값을 받아오는지 설정
+        PostId postId = new PostId("ID0701");
+        Post post = new Post(postId, "굉장한 제목", "방장", "엄청난 내용");
+        given(postRepository.findById(postId)).willReturn(Optional.of(post));
+
+        // When : service에서 업데이트 메서드 호출
+        PostUpdateDto postUpdateDto = new PostUpdateDto("업데이트 제목", "업데이트 내용");
+        postService.updatePost(postId.toString(), postUpdateDto);
+
+        // Then : 업데이트 됬는지 확인
+        assertThat(post.author().equals("업데이트 제목"));
+        assertThat(post.content().equals("업데이트 내용"));
+    }
+
+    @Test
+    @DisplayName("게시물 삭제 테스트")
+    void deletePost() {
+        // Given : Repo 에서 게시물 목록 반환값 설정
+        PostId postId = new PostId("ID0701");
+        Post post = new Post(postId, "제목", "작성한사람", "그냥내용");
+
+        given(postRepository.findById(postId)).willReturn(Optional.of(post));
+
+        // When : 게시물 목록 중 삭제
+        postService.deletePost(postId.toString());
+
+        // Then : 메서드 호출 확인 및 목록 사이즈가 줄어든 거 확인
+        verify(postRepository).delete(any(Post.class));
+
     }
 
 }

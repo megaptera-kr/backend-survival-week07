@@ -11,17 +11,21 @@ import kr.megaptera.assignment.models.Post;
 import kr.megaptera.assignment.models.PostId;
 import kr.megaptera.assignment.repositories.CommentRepository;
 import kr.megaptera.assignment.repositories.PostRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CommentService {
 
-    @Autowired
+
     private PostRepository postRepository;
 
-    @Autowired
+
     private CommentRepository commentRepository;
+
+    public CommentService(PostRepository postRepository, CommentRepository commentRepository) {
+        this.postRepository = postRepository;
+        this.commentRepository = commentRepository;
+    }
 
     @Transactional
     public List<CommentDto> getCommentList(String postId) {

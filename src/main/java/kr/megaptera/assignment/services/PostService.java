@@ -44,28 +44,22 @@ public class PostService {
         return post.toDto();
     }
 
-    public PostDto updatePost(String postId, PostUpdateDto postUpdateDto) throws Exception {
-        Optional<Post> optionalPost = postRepository.findById(PostId.of(postId));
+    public PostDto updatePost(String postId, PostUpdateDto postUpdateDto) {
+        Post post = postRepository.findById(PostId.of(postId)).orElseThrow(PostNotFound::new);
 
-        if (optionalPost.isPresent()) {
-            Post post = optionalPost.get();
-            post.update(postUpdateDto.getTitle(), postUpdateDto.getContent());
-            postRepository.saveAndFlush(post);
-            return post.toDto();
-        } else {
-            throw new Exception();
-        }
+        post.update(postUpdateDto.getTitle(), postUpdateDto.getContent());
+        postRepository.saveAndFlush(post);
+
+        return post.toDto();
+
     }
 
-    public PostDto deletePost(String postId) throws Exception {
-        Optional<Post> optionalPost = postRepository.findById(PostId.of(postId));
+    public PostDto deletePost(String postId) {
+        Post post = postRepository.findById(PostId.of(postId)).orElseThrow(PostNotFound::new);
 
-        if (optionalPost.isPresent()) {
-            Post post = optionalPost.get();
-            postRepository.delete(post);
-            return post.toDto();
-        } else {
-            throw new Exception();
-        }
+        postRepository.delete(post);
+
+        return post.toDto();
+
     }
 }

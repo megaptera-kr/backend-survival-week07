@@ -31,8 +31,16 @@ public class Comment {
     public Comment() {
     }
 
+
     public Comment(String author, String content, Post post) {
         this.id = CommentId.generate();
+        this.author = author;
+        this.content = content;
+        this.post = post;
+    }
+
+    public Comment(CommentId id, String author, String content, Post post) {
+        this.id = id;
         this.author = author;
         this.content = content;
         this.post = post;
