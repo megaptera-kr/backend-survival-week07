@@ -97,8 +97,8 @@ public class PostServiceTest {
         postService.updatePost(postId.toString(), postUpdateDto);
 
         // Then : 업데이트 됬는지 확인
-        assertThat(post.author().equals("업데이트 제목"));
-        assertThat(post.content().equals("업데이트 내용"));
+        assertThat(post.title()).isEqualTo("업데이트 제목");
+        assertThat(post.content()).isEqualTo("업데이트 내용");
     }
 
     @Test

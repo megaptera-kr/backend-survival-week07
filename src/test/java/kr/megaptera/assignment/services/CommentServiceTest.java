@@ -91,7 +91,7 @@ public class CommentServiceTest {
         commentService.updateComment(commentId.toString(), commentUpdateDto);
 
         // Then : 업데이트 되었는지 확인
-        assertThat(comment.content().equals("새로운 내용"));
+        assertThat(comment.content()).isEqualTo("새로운 내용");
     }
 
     @Test
