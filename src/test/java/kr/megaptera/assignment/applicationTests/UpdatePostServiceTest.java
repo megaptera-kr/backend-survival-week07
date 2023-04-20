@@ -28,7 +28,7 @@ public class UpdatePostServiceTest {
 
         Post post = new Post(postId, "title", "author", "content");
 
-        given(postRepository.findById(postId.toString())).willReturn(Optional.of(post));
+        given(postRepository.findById(postId)).willReturn(Optional.of(post));
 
         PostUpdateDto postUpdateDto = new PostUpdateDto("new title", "new content");
         updatePostService.updatePost(postId.toString(), postUpdateDto);

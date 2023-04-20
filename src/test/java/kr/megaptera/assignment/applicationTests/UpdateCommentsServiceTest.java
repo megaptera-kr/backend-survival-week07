@@ -10,7 +10,6 @@ import java.util.*;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
-import static org.mockito.Mockito.*;
 
 public class UpdateCommentsServiceTest {
     private UpdateCommentService updateCommentService;
@@ -29,7 +28,7 @@ public class UpdateCommentsServiceTest {
         PostId postId = new PostId("001");
 
         Comment comment = new Comment(commentId, "author", "content", postId);
-        given(commentRepository.findByIdAndPostId(commentId.toString(), postId.toString()))
+        given(commentRepository.findByIdAndPostId(commentId, postId))
                 .willReturn(Optional.of(comment));
 
         CommentUpdateDto commentUpdateDto = new CommentUpdateDto("new content");

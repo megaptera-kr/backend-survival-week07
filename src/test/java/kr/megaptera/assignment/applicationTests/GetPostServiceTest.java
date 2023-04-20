@@ -25,7 +25,7 @@ public class GetPostServiceTest {
     @Test
     void get() {
         PostId postId = new PostId("001");
-        given(postRepository.findById(postId.toString()))
+        given(postRepository.findById(postId))
                 .willReturn(Optional.of(new Post(postId, "title", "author", "content")));
 
         PostDto postDto = new PostDto(postId.toString(), "title", "author", "content");

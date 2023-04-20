@@ -24,7 +24,7 @@ public class GetCommentsServiceTest {
     @DisplayName("get Comments!")
     void list() {
         String postId = "001";
-        given(commentRepository.findAllById(postId))
+        given(commentRepository.findAllByPostId(PostId.of(postId)))
                 .willReturn(List.of(
                         new Comment(new CommentId("0001"), "작성자", "제목", new PostId(postId))
                 ));

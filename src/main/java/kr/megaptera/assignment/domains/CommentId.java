@@ -30,7 +30,7 @@ public class CommentId {
     public boolean equals(Object o) {
         CommentId otherCommentId = (CommentId) o;
 
-        return Objects.equals(this, ((CommentId) o).id);
+        return Objects.equals(id, otherCommentId.id);
     }
 
     @Override

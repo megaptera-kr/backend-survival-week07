@@ -26,6 +26,6 @@ public class DeletePostServiceTest {
 
         deletePostService.deletePost(postId.toString());
 
-        verify(postRepository).deleteById(any(String.class));
+        verify(postRepository).deleteById(any(PostId.class));
     }
 }
