@@ -14,7 +14,7 @@ public class CreatePostService {
     }
 
     public void createPost(PostCreateDto postCreateDto) {
-        Post post = new Post(PostId.generate(), postCreateDto.getAuthor(), postCreateDto.getTitle(), postCreateDto.getContent());
+        Post post = new Post(PostId.generate(), postCreateDto.getTitle(), postCreateDto.getAuthor(), postCreateDto.getContent());
         postRepository.save(post);
     }
 }

@@ -21,6 +21,6 @@ public class GetPostService {
         Optional<Post> post = postRepository.findById(PostId.of(id));
         if (post.isPresent()) {
             return new PostDto(post.get());
-        } else throw new CommentNotFound();
+        } else throw new PostNotFound();
     }
 }

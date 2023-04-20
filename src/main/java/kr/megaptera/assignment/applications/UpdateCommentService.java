@@ -16,7 +16,7 @@ public class UpdateCommentService {
     }
 
     public void updateCommentDto(String id, String postId, CommentUpdateDto commentUpdateDto) {
-        Optional<Comment> comment = commentRepository.findByIdAndPostId(id, postId);
+        Optional<Comment> comment = commentRepository.findByIdAndPostId(CommentId.of(id), PostId.of(postId));
         if (comment.isPresent()) {
             Comment _comment = comment.get();
             _comment.update(commentUpdateDto.getContent());

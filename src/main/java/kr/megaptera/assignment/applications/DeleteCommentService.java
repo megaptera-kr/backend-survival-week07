@@ -17,7 +17,7 @@ public class DeleteCommentService {
 
     public void delete(String id, String postId) {
 
-        Optional<Comment> comment = commentRepository.findByIdAndPostId(id, postId);
+        Optional<Comment> comment = commentRepository.findByIdAndPostId(CommentId.of(id), PostId.of(postId));
         if (comment.isPresent()) {
             Comment _comment = comment.get();
             commentRepository.delete(_comment);

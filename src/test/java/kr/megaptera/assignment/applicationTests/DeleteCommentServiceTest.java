@@ -28,11 +28,11 @@ public class DeleteCommentServiceTest {
 
         Comment comment = new Comment(commentId, "author", "content", postId);
 
-        given(commentRepository.findByIdAndPostId(commentId.toString(), postId.getValue()))
+        given(commentRepository.findByIdAndPostId(commentId, postId))
                 .willReturn(Optional.of(comment));
 
         deleteCommentService.delete(commentId.toString(), postId.toString());
 
-        verify(commentRepository).deleteByIdAndpostId(any(String.class), any(String.class));
+        verify(commentRepository).delete(any(Comment.class));
     }
 }

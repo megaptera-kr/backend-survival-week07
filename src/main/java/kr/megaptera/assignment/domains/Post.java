@@ -15,7 +15,6 @@ public class Post {
 
     private String content;
 
-    g
 
     public Post() {
     }
