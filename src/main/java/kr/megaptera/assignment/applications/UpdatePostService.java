@@ -5,10 +5,10 @@ import kr.megaptera.assignment.dtos.*;
 import kr.megaptera.assignment.exceptions.*;
 import kr.megaptera.assignment.repositories.*;
 import org.springframework.stereotype.*;
-
-import java.util.*;
+import org.springframework.transaction.annotation.*;
 
 @Service
+@Transactional
 public class UpdatePostService {
     private final PostRepository postRepository;
 
@@ -17,11 +17,10 @@ public class UpdatePostService {
     }
 
     public void updatePost(String id, PostUpdateDto postUpdateDto) {
-        Optional<Post> post = postRepository.findById(PostId.of(id));
-        if (post.isPresent()) {
-            Post _post = post.get();
-            _post.update(postUpdateDto.getTitle(), postUpdateDto.getContent());
-            postRepository.save(_post);
-        } else throw new PostNotFound();
+
+        Post post = postRepository.findById(PostId.of(id)).orElseThrow(PostNotFound::new);
+
+        post.update(postUpdateDto.getTitle(), postUpdateDto.getContent());
+
     }
 }

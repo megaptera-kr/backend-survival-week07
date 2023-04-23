@@ -10,7 +10,6 @@ import java.util.*;
 public interface PostRepository extends JpaRepository<Post, PostId> {
 
     List<Post> findAll();
-    
-    Optional<Post> findById(PostId postId);
+
 
 }
