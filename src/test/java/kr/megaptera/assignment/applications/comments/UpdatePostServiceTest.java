@@ -1,10 +1,10 @@
-package kr.megaptera.assignment.applications;
+package kr.megaptera.assignment.applications.comments;
 
+import kr.megaptera.assignment.applications.posts.UpdatePostService;
 import kr.megaptera.assignment.dtos.posts.PostUpdateDto;
 import kr.megaptera.assignment.exceptions.PostNotFoundException;
 import kr.megaptera.assignment.models.posts.MultilineText;
 import kr.megaptera.assignment.models.posts.Post;
-import kr.megaptera.assignment.models.posts.PostId;
 import kr.megaptera.assignment.repositories.PostRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

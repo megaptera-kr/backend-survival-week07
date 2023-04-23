@@ -6,19 +6,13 @@ import jakarta.transaction.Transactional;
 import kr.megaptera.assignment.dtos.posts.PostCreateDto;
 import kr.megaptera.assignment.dtos.posts.PostReadDto;
 import kr.megaptera.assignment.dtos.posts.PostUpdateDto;
-import kr.megaptera.assignment.models.posts.MultilineText;
-import kr.megaptera.assignment.models.posts.Post;
-import kr.megaptera.assignment.repositories.PostRepository;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
-import org.springframework.test.context.event.annotation.BeforeTestClass;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -48,7 +42,6 @@ class PostControllerTest {
         removePost(demoPost.getId());
     }
 
-    // 실제 기능은 동작하는데 테스트는 안됨??
     @Test
     @DisplayName("GET /posts/{id} - with correct ID")
     void detailWithCorrectId() throws JsonProcessingException {

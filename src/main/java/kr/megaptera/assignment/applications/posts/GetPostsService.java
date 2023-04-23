@@ -1,4 +1,4 @@
-package kr.megaptera.assignment.applications;
+package kr.megaptera.assignment.applications.posts;
 
 import kr.megaptera.assignment.dtos.posts.PostReadDto;
 import kr.megaptera.assignment.repositories.PostRepository;

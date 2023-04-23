@@ -1,7 +1,7 @@
 package kr.megaptera.assignment.controllers;
 
 
-import kr.megaptera.assignment.applications.*;
+import kr.megaptera.assignment.applications.posts.*;
 import kr.megaptera.assignment.dtos.posts.PostCreateDto;
 import kr.megaptera.assignment.dtos.posts.PostUpdateDto;
 import kr.megaptera.assignment.exceptions.PostNotFoundException;

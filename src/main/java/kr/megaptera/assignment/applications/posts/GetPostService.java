@@ -1,4 +1,4 @@
-package kr.megaptera.assignment.applications;
+package kr.megaptera.assignment.applications.posts;
 
 import jakarta.transaction.Transactional;
 import kr.megaptera.assignment.dtos.posts.PostReadDto;

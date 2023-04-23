@@ -1,4 +1,4 @@
-package kr.megaptera.assignment.applications;
+package kr.megaptera.assignment.applications.posts;
 
 import com.github.f4b6a3.tsid.TsidCreator;
 import jakarta.transaction.Transactional;
