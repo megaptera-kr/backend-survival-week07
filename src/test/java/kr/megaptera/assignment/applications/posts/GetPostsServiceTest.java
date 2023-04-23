@@ -1,4 +1,4 @@
-package kr.megaptera.assignment.applications.comments;
+package kr.megaptera.assignment.applications.posts;
 
 import kr.megaptera.assignment.applications.posts.GetPostsService;
 import kr.megaptera.assignment.dtos.posts.PostReadDto;

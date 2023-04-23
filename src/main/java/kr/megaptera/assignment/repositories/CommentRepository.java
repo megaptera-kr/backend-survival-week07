@@ -9,6 +9,8 @@ import java.util.Optional;
 public interface CommentRepository extends CrudRepository<Comment, String> {
     List<Comment> findAll();
 
+    List<Comment> findByPostId(String postId);
+
     Optional<Comment> findById(String id);
 
     Comment save(Comment post);

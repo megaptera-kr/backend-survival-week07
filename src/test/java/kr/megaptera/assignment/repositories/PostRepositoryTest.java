@@ -20,7 +20,8 @@ class PostRepositoryTest {
     // .Net 에서 익히 사용하던 전략은 테스트 상에서는 DB Context (DAO) 를 테스트시에 in-memory 로 사용하였었는데.. 이건 좀?
     @Test
     public void crudTest() {
-        var newPost = new Post("crud_test_id", "title", "author", new MultilineText("content"));
+        var newPost = new Post("crud_test_id01", "title", "author", new MultilineText("content"));
+
         var savedPost = postRepository.save(newPost);
 
         savedPost.setTitle("changed title");
