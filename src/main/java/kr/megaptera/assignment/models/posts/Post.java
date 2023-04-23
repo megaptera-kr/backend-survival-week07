@@ -3,6 +3,8 @@ package kr.megaptera.assignment.models.posts;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "posts")
 @Data
@@ -21,4 +23,14 @@ public class Post {
 
     @Embedded
     private MultilineText content;
+
+    @Override
+    public boolean equals(Object other) {
+        return id.equals(((Post) other).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

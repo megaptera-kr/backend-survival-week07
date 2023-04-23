@@ -3,7 +3,6 @@ package kr.megaptera.assignment.applications.posts;
 import jakarta.transaction.Transactional;
 import kr.megaptera.assignment.dtos.posts.PostReadDto;
 import kr.megaptera.assignment.exceptions.PostNotFoundException;
-import kr.megaptera.assignment.models.posts.PostId;
 import kr.megaptera.assignment.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -3,7 +3,6 @@ package kr.megaptera.assignment.repositories;
 import jakarta.transaction.Transactional;
 import kr.megaptera.assignment.models.posts.MultilineText;
 import kr.megaptera.assignment.models.posts.Post;
-import kr.megaptera.assignment.models.posts.PostId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
