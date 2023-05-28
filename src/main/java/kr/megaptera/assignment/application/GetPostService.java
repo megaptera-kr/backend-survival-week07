@@ -1,7 +1,9 @@
 package kr.megaptera.assignment.application;
 
 import kr.megaptera.assignment.dtos.PostDto;
+import kr.megaptera.assignment.exceptions.PostNotFound;
 import kr.megaptera.assignment.models.Post;
+import kr.megaptera.assignment.models.PostId;
 import kr.megaptera.assignment.repositories.PostRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,7 @@ public class GetPostService {
     }
 
     public PostDto getPostDto(String postId) {
-        Post post = postRepository.findById(postId).get();
+        Post post = postRepository.findById(PostId.of(postId)).orElseThrow(PostNotFound::new);
         return new PostDto(post);
     }
 }

@@ -7,8 +7,11 @@ import kr.megaptera.assignment.application.UpdatePostService;
 import kr.megaptera.assignment.dtos.PostCreateDto;
 import kr.megaptera.assignment.dtos.PostDto;
 import kr.megaptera.assignment.dtos.PostUpdateDto;
+import kr.megaptera.assignment.exceptions.PostNotFound;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +25,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/posts")
+@CrossOrigin
 public class PostController {
     private final GetPostService getPostService;
     private final CreatePostService createPostService;
@@ -71,5 +75,11 @@ public class PostController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     private void delete(@PathVariable String id) {
         deletePostService.delete(id);
+    }
+
+    @ExceptionHandler(PostNotFound.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    private PostNotFound postNotFound() {
+        return new PostNotFound();
     }
 }

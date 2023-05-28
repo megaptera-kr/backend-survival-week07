@@ -4,12 +4,16 @@ import com.github.f4b6a3.tsid.TsidCreator;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class CommentId {
+public class CommentId implements Serializable {
     @Column(name = "comment_id")
     private String value;
+
+    public CommentId() {
+    }
 
     public CommentId(String value) {
         this.value = value;
@@ -25,9 +29,7 @@ public class CommentId {
 
     @Override
     public String toString() {
-        return "CommentId{" +
-            "value='" + value + '\'' +
-            '}';
+        return value;
     }
 
     @Override

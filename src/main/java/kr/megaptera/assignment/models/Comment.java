@@ -1,15 +1,17 @@
 package kr.megaptera.assignment.models;
 
+import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import kr.megaptera.assignment.dtos.CommentUpdateDto;
 
+import java.io.Serializable;
+
 @Entity
-public class Comment {
-    @Id
-    @Embedded
+public class Comment implements Serializable {
+    @EmbeddedId
     private CommentId id;
 
     @Embedded

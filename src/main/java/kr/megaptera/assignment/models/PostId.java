@@ -4,12 +4,16 @@ import com.github.f4b6a3.tsid.TsidCreator;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class PostId {
+public class PostId implements Serializable {
     @Column(name = "post_id")
     private String value;
+
+    public PostId() {
+    }
 
     public PostId(String value) {
         this.value = value;
@@ -25,9 +29,7 @@ public class PostId {
 
     @Override
     public String toString() {
-        return "PostId{" +
-            "value='" + value + '\'' +
-            '}';
+        return value;
     }
 
     @Override

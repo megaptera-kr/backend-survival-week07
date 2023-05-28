@@ -1,15 +1,13 @@
 package kr.megaptera.assignment.models;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import kr.megaptera.assignment.dtos.PostUpdateDto;
 
 @Entity
 public class Post {
-    @Id
-    @Embedded
+    @EmbeddedId
     private PostId id;
 
     private String author;
@@ -18,6 +16,9 @@ public class Post {
 
     @Embedded
     private MultilineText content;
+
+    public Post() {
+    }
 
     public Post(PostId id, String author, String title, MultilineText content) {
         this.id = id;
@@ -52,5 +53,15 @@ public class Post {
 
     public MultilineText content() {
         return content;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+            "id=" + id +
+            ", author='" + author + '\'' +
+            ", title='" + title + '\'' +
+            ", content=" + content +
+            '}';
     }
 }

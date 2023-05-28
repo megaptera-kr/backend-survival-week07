@@ -10,6 +10,9 @@ import java.util.Objects;
 public class MultilineText {
     private List<String> lines;
 
+    public MultilineText() {
+    }
+
     public MultilineText(String text) {
         this.lines = Arrays.asList(text.split("\n"));
     }

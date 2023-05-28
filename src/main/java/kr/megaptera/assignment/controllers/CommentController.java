@@ -7,8 +7,11 @@ import kr.megaptera.assignment.application.UpdateCommentService;
 import kr.megaptera.assignment.dtos.CommentCreateDto;
 import kr.megaptera.assignment.dtos.CommentDto;
 import kr.megaptera.assignment.dtos.CommentUpdateDto;
+import kr.megaptera.assignment.exceptions.CommentNotFound;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +26,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/comments")
+@CrossOrigin
 public class CommentController {
     private final GetCommentService getCommentService;
     private final CreateCommentService createCommentService;
@@ -70,5 +74,11 @@ public class CommentController {
         @RequestParam String postId
     ) {
         deleteCommentService.delete(id, postId);
+    }
+
+    @ExceptionHandler(CommentNotFound.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    private CommentNotFound commentNotFound() {
+        return new CommentNotFound();
     }
 }
