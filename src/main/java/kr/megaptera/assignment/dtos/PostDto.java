@@ -22,6 +22,11 @@ public class PostDto {
         this(post.id().toString(), post.title().toString(), post.author(), post.content().toString());
     }
 
+    public PostDto(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
     public String getId() {
         return id;
     }

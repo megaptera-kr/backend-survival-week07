@@ -8,7 +8,6 @@ import kr.megaptera.assignment.models.PostContent;
 import kr.megaptera.assignment.models.PostId;
 import kr.megaptera.assignment.models.PostTitle;
 import kr.megaptera.assignment.repositories.PostRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,8 +17,11 @@ import java.util.Optional;
 @Service
 @Transactional
 public class PostService {
-    @Autowired
-    private PostRepository postRepository;
+    private final PostRepository postRepository;
+
+    public PostService(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
 
     public List<PostDto> getList() {
         List<Post> posts = postRepository.findAll();
