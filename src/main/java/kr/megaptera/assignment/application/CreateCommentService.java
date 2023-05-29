@@ -20,13 +20,13 @@ public class CreateCommentService {
         this.commentRepository = commentRepository;
     }
 
-    public ResponseEntity<CommentDto> createComment(RqCreateCommentDto dto, int postId) {
+    public ResponseEntity<CommentDto> createComment(RqCreateCommentDto dto, String postId) {
         Comment comment = new Comment(PostId.of(postId),
                 Author.of(dto.getAuthor()),
                 Content.of(dto.getContent()));
 
         Comment saveComment = commentRepository.save(comment);
-        CommentDto commentDto = new CommentDto(saveComment);
+        CommentDto commentDto = new CommentDto(comment);
         return new ResponseEntity<>(commentDto, HttpStatus.CREATED);
     }
 }

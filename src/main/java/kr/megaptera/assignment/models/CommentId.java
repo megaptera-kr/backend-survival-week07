@@ -1,5 +1,6 @@
 package kr.megaptera.assignment.models;
 
+import com.github.f4b6a3.tsid.TsidCreator;
 import jakarta.persistence.Embeddable;
 
 import java.io.Serializable;
@@ -18,8 +19,12 @@ public class CommentId implements Serializable {
 
     }
 
-    public static CommentId of(int id) {
-        return new CommentId(Integer.toString(id));
+    public static CommentId of(String id) {
+        return new CommentId(id);
+    }
+
+    public static CommentId generate() {
+        return new CommentId(TsidCreator.getTsid().toString());
     }
 
     @Override

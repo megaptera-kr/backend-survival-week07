@@ -40,26 +40,26 @@ public class CommentController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<CommentDto>> getCommentByPostId(@RequestParam("postId") int postId) {
+    public ResponseEntity<List<CommentDto>> getCommentByPostId(@RequestParam("postId") String postId) {
         return getCommentsService.getCommentByPostId(postId);
     }
 
     @PostMapping()
     public ResponseEntity<CommentDto> createComment(@RequestBody RqCreateCommentDto dto,
-                                                    @RequestParam("postId") int postId) {
+                                                    @RequestParam("postId") String postId) {
         return createCommentService.createComment(dto, postId);
     }
 
     @PatchMapping("/{commentId}")
     public ResponseEntity<CommentDto> updateComment(@RequestBody RqUpdateCommentDto dto,
-                                                    @PathVariable("commentId") int commentId,
-                                                    @RequestParam("postId") int postId) {
+                                                    @PathVariable("commentId") String commentId,
+                                                    @RequestParam("postId") String postId) {
         return updateCommentService.updateComment(dto, postId, commentId);
     }
 
     @DeleteMapping("/{commentId}")
-    public ResponseEntity<CommentDto> deleteComment(@PathVariable("commentId") int commentId,
-                                                    @RequestParam("postId") int postId) {
+    public ResponseEntity<CommentDto> deleteComment(@PathVariable("commentId") String commentId,
+                                                    @RequestParam("postId") String postId) {
         return deleteCommentService.deleteComment(postId, commentId);
     }
 }

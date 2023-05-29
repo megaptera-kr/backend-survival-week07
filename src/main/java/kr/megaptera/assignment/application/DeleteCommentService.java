@@ -19,13 +19,13 @@ public class DeleteCommentService {
         this.commentRepository = commentRepository;
     }
 
-    public ResponseEntity<CommentDto> deleteComment(int postId, int commentId) {
+    public ResponseEntity<CommentDto> deleteComment(String postId, String commentId) {
         Comment comment = commentRepository.findById(CommentId.of(commentId))
                 .orElseThrow(NotFoundException::new);
         if (!comment.isEqualPostId(PostId.of(postId))) {
             throw new NotFoundException();
         }
-        commentRepository.deleteById(comment.Id().toString());
+        commentRepository.delete(comment);
         CommentDto commentDto = new CommentDto(comment);
         return new ResponseEntity<>(commentDto, HttpStatus.OK);
     }

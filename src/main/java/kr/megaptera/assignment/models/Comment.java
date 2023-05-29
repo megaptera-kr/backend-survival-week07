@@ -23,6 +23,7 @@ public class Comment {
     private Content content;
 
     public Comment(PostId postId, Author author, Content content) {
+        this.id = CommentId.generate();
         this.postId = postId;
         this.author = author;
         this.content = content;
@@ -30,6 +31,13 @@ public class Comment {
 
     protected Comment() {
 
+    }
+
+    public Comment(CommentId id, PostId postId, Author author, Content content) {
+        this.id = id;
+        this.postId = postId;
+        this.author = author;
+        this.content = content;
     }
 
     public void update(Content content) {

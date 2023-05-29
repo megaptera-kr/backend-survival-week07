@@ -25,7 +25,7 @@ public class CreatePostService {
                 Author.of(dto.getAuthor()),
                 Content.of(dto.getContent()));
         Post savePost = postRepository.save(post);
-        PostDto postDto = new PostDto(savePost);
+        PostDto postDto = new PostDto(post);
         return new ResponseEntity<>(postDto, HttpStatus.CREATED);
     }
 }

@@ -18,8 +18,8 @@ public class GetPostService {
         this.postRepository = postRepository;
     }
 
-    public ResponseEntity<PostDto> getPostById(int postId) {
-        Post post = postRepository.findById(Integer.toString(postId))
+    public ResponseEntity<PostDto> getPostById(String postId) {
+        Post post = postRepository.findById(new PostId(postId))
                 .orElseThrow(NotFoundException::new);
         PostDto postDto = new PostDto(post);
         return new ResponseEntity<>(postDto, HttpStatus.OK);

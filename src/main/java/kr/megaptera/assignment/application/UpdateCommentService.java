@@ -21,7 +21,7 @@ public class UpdateCommentService {
         this.commentRepository = commentRepository;
     }
 
-    public ResponseEntity<CommentDto> updateComment(RqUpdateCommentDto dto, int postId, int commentId) {
+    public ResponseEntity<CommentDto> updateComment(RqUpdateCommentDto dto, String postId, String commentId) {
         Comment comment = commentRepository.findById(CommentId.of(commentId))
                 .orElseThrow(NotFoundException::new);
         if (!comment.isEqualPostId(PostId.of(postId))) {
@@ -29,7 +29,7 @@ public class UpdateCommentService {
         }
         comment.update(Content.of(dto.getContent()));
         Comment updateComment = commentRepository.save(comment);
-        CommentDto commentDto = new CommentDto(updateComment);
+        CommentDto commentDto = new CommentDto(comment);
         return new ResponseEntity<>(commentDto, HttpStatus.OK);
     }
 }

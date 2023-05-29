@@ -20,7 +20,7 @@ public class GetCommentsService {
         this.commentRepository = commentRepository;
     }
 
-    public ResponseEntity<List<CommentDto>> getCommentByPostId(int postId) {
+    public ResponseEntity<List<CommentDto>> getCommentByPostId(String postId) {
         List<Comment> commentList = commentRepository.findAllByPostId(PostId.of(postId));
 
         List<CommentDto> commentDtoList = commentList.stream().map(CommentDto::new)

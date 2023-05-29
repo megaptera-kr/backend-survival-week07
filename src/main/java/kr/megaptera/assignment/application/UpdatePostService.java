@@ -21,13 +21,13 @@ import org.springframework.stereotype.Service;
         this.postRepository = postRepository;
     }
 
-    public ResponseEntity<PostDto> updatePost(RqUpdatePostDto dto, int postId) {
-        Post post = postRepository.findById(PostId.of(postId).toString())
+    public ResponseEntity<PostDto> updatePost(RqUpdatePostDto dto, String postId) {
+        Post post = postRepository.findById(PostId.of(postId))
                 .orElseThrow(NotFoundException::new);
         post.update(Title.of(dto.getTitle()),
                 Content.of(dto.getContent()));
         Post updatePost = postRepository.save(post);
-        PostDto postDto = new PostDto(updatePost);
+        PostDto postDto = new PostDto(post);
         return new ResponseEntity<>(postDto, HttpStatus.OK);
     }
 }

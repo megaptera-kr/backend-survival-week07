@@ -18,6 +18,7 @@ public class Post {
     private Content content;
 
     public Post(Title title, Author author, Content content) {
+        this.id = PostId.generate();
         this.title = title;
         this.author = author;
         this.content = content;

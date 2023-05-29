@@ -18,8 +18,8 @@ public class DeletePostService {
         this.postRepository = postRepository;
     }
 
-    public ResponseEntity<PostDto> deletePost(int postId) {
-        Post post = postRepository.findById(Integer.toString(postId))
+    public ResponseEntity<PostDto> deletePost(String postId) {
+        Post post = postRepository.findById(new PostId(postId))
                 .orElseThrow(NotFoundException::new);
         postRepository.delete(post);
         PostDto postDto = new PostDto(post);

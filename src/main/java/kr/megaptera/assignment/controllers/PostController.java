@@ -46,7 +46,7 @@ public class PostController {
     }
 
     @GetMapping("/{postId}")
-    public ResponseEntity<PostDto> getPostById (@PathVariable("postId") int postId) {
+    public ResponseEntity<PostDto> getPostById (@PathVariable("postId") String postId) {
         return getPostService.getPostById(postId);
     }
 
@@ -57,12 +57,12 @@ public class PostController {
 
     @PatchMapping("/{postId}")
     public ResponseEntity<PostDto> updatePost(@RequestBody RqUpdatePostDto dto,
-                                              @PathVariable("postId") int postId) {
+                                              @PathVariable("postId") String postId) {
         return updatePostService.updatePost(dto, postId);
     }
 
     @DeleteMapping("/{postId}")
-    public ResponseEntity<PostDto> deletePost(@PathVariable("postId") int postId) {
+    public ResponseEntity<PostDto> deletePost(@PathVariable("postId") String postId) {
         return deletePostService.deletePost(postId);
     }
 
