@@ -14,7 +14,10 @@ public class CommentDto {
 
     private String author;
     private String content;
+    private String postComment;
     public CommentDto(Comment comment) {
-        this(comment.getId().toString(), comment.getAuthor(), comment.getContent());
+        this.id = comment.getId().toString();
+        this.author = comment.getAuthor();
+        this.postComment = comment.getContent();
     }
 }

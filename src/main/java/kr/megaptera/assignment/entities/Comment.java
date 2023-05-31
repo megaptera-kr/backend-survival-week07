@@ -29,19 +29,20 @@ public class Comment {
     @JoinColumn(name = "post_comment")
     private Post post;
 
-    public Comment(String author, String content, Post post) {
+    public Comment(String author, String content) {
         this.author = author;
         this.content = content;
-        this.post = post;
     }
-
+    public void setComment(String author, String content) {
+        this.author = author;
+        this.content = content;
+    }
     @Override
     public String toString() {
         return "Comment{" +
                 "id='" + id + '\'' +
                 ", author='" + author + '\'' +
                 ", content='" + content + '\'' +
-                ", post=" + post +
                 '}';
     }
 }
