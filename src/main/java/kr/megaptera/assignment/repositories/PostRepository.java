@@ -1,5 +1,15 @@
 package kr.megaptera.assignment.repositories;
 
-public interface PostRepository {
-    // TODO: JPA 이용해서 과제를 완성해 주세요.
+import kr.megaptera.assignment.domains.*;
+import org.springframework.data.jpa.repository.*;
+import org.springframework.stereotype.*;
+
+import java.util.*;
+
+@Repository
+public interface PostRepository extends JpaRepository<Post, PostId> {
+
+    List<Post> findAll();
+
+
 }
