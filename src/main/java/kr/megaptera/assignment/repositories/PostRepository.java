@@ -1,5 +1,17 @@
 package kr.megaptera.assignment.repositories;
 
-public interface PostRepository {
-    // TODO: JPA 이용해서 과제를 완성해 주세요.
+import kr.megaptera.assignment.models.posts.Post;
+import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface PostRepository extends CrudRepository<Post, String> {
+    List<Post> findAll();
+
+    Optional<Post> findById(String id);
+
+    Post save(Post post);
+
+    void delete(Post post);
 }
