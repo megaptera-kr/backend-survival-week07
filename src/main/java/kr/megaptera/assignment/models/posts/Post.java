@@ -1,11 +1,14 @@
 package kr.megaptera.assignment.models.posts;
 
 import jakarta.persistence.*;
+import kr.megaptera.assignment.models.comments.Comment;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 
-@Entity()
+@Entity
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,5 +43,19 @@ public class Post {
 
     public String getContent() {
         return content;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "postId")
+    private final List<Comment> commentList = new ArrayList<>();
+
+    public void addComment(String author, String content) {
+        Comment newComment = new Comment(author, content);
+
+        this.commentList.add(newComment);
+    }
+
+    public List<Comment> findAllComments() {
+        return new ArrayList<>(this.commentList);
     }
 }
