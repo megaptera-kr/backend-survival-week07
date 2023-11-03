@@ -52,6 +52,14 @@ public class Post {
         return content;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "postId")
     private final List<Comment> commentList = new ArrayList<>();
