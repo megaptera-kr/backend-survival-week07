@@ -73,4 +73,8 @@ public class Post {
     public List<Comment> findAllComments() {
         return new ArrayList<>(this.commentList);
     }
+
+    public void deleteComment(UUID commentId) {
+        this.commentList.removeIf(comment -> comment.getPostId().equals(commentId));
+    }
 }
