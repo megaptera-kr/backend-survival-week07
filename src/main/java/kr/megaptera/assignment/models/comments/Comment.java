@@ -24,6 +24,13 @@ public class Comment {
         this.content = content;
     }
 
+    public Comment(UUID id, UUID postId, String author, String content) {
+        this.id = id;
+        this.postId = postId;
+        this.author = author;
+        this.content = content;
+    }
+
     public UUID getId() {
         return id;
     }
@@ -38,5 +45,9 @@ public class Comment {
 
     public String getContent() {
         return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }
