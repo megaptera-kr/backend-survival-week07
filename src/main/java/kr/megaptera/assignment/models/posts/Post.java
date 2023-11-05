@@ -75,6 +75,6 @@ public class Post {
     }
 
     public void deleteComment(UUID commentId) {
-        this.commentList.removeIf(comment -> comment.getPostId().equals(commentId));
+        this.commentList.removeIf(comment -> comment.getId().equals(commentId));
     }
 }
