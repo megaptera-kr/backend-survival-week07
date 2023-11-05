@@ -1,6 +1,9 @@
 package kr.megaptera.assignment.models.posts;
 
 import jakarta.persistence.*;
+import kr.megaptera.assignment.models.columns.Author;
+import kr.megaptera.assignment.models.columns.Content;
+import kr.megaptera.assignment.models.columns.Title;
 import kr.megaptera.assignment.models.comments.Comment;
 
 import java.util.ArrayList;

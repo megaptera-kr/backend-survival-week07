@@ -1,6 +1,9 @@
 package kr.megaptera.assignment.models.posts;
 
 import jakarta.transaction.Transactional;
+import kr.megaptera.assignment.models.columns.Author;
+import kr.megaptera.assignment.models.columns.Content;
+import kr.megaptera.assignment.models.columns.Title;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package kr.megaptera.assignment.models.posts;
+package kr.megaptera.assignment.models.columns;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

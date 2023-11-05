@@ -1,10 +1,10 @@
 package kr.megaptera.assignment.repositories;
 
 import jakarta.transaction.Transactional;
-import kr.megaptera.assignment.models.posts.Author;
-import kr.megaptera.assignment.models.posts.Content;
+import kr.megaptera.assignment.models.columns.Author;
+import kr.megaptera.assignment.models.columns.Content;
+import kr.megaptera.assignment.models.columns.Title;
 import kr.megaptera.assignment.models.posts.Post;
-import kr.megaptera.assignment.models.posts.Title;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
