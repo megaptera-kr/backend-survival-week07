@@ -3,7 +3,10 @@ package kr.megaptera.assignment.application.posts;
 import jakarta.transaction.Transactional;
 import kr.megaptera.assignment.dtos.posts.PostDto;
 import kr.megaptera.assignment.exceptions.PostNotFound;
+import kr.megaptera.assignment.models.posts.Author;
+import kr.megaptera.assignment.models.posts.Content;
 import kr.megaptera.assignment.models.posts.Post;
+import kr.megaptera.assignment.models.posts.Title;
 import kr.megaptera.assignment.repositories.PostRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -35,9 +38,9 @@ class GetPostServiceTest {
     @DisplayName("id로 post를 찾은 경우 PostDto 반환")
     void testGetPostWhenPostExists() {
         UUID mockId = UUID.randomUUID();
-        String mockTitle = "title";
-        String mockAuthor = "author";
-        String mockContent = "content";
+        Title mockTitle = new Title("title");
+        Author mockAuthor = new Author("author");
+        Content mockContent = new Content("content");
 
         given(postRepository.findById(mockId)).willReturn(Optional.of(new Post(
                 mockId,
@@ -49,9 +52,9 @@ class GetPostServiceTest {
         PostDto postDto = getPostService.getPost(mockId.toString());
 
         assertThat(postDto.getId()).isEqualTo(mockId.toString());
-        assertThat(postDto.getTitle()).isEqualTo(mockTitle);
-        assertThat(postDto.getAuthor()).isEqualTo(mockAuthor);
-        assertThat(postDto.getContent()).isEqualTo(mockContent);
+        assertThat(postDto.getTitle()).isEqualTo(mockTitle.toString());
+        assertThat(postDto.getAuthor()).isEqualTo(mockAuthor.toString());
+        assertThat(postDto.getContent()).isEqualTo(mockContent.toString());
     }
 
     @Test

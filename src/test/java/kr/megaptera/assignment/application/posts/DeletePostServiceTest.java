@@ -1,7 +1,10 @@
 package kr.megaptera.assignment.application.posts;
 
 import jakarta.transaction.Transactional;
+import kr.megaptera.assignment.models.posts.Author;
+import kr.megaptera.assignment.models.posts.Content;
 import kr.megaptera.assignment.models.posts.Post;
+import kr.megaptera.assignment.models.posts.Title;
 import kr.megaptera.assignment.repositories.PostRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -34,9 +37,9 @@ class DeletePostServiceTest {
     @DisplayName("deletePost")
     void testDeletePost() {
         UUID mockId = UUID.randomUUID();
-        String mockTitle = "title";
-        String mockAuthor = "author";
-        String mockContent = "content";
+        Title mockTitle = new Title("title");
+        Author mockAuthor = new Author("author");
+        Content mockContent = new Content("content");
 
         Post mockPost = new Post(
                 mockId,

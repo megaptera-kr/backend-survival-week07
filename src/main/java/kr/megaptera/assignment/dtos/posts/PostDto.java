@@ -18,9 +18,9 @@ public class PostDto {
     public static PostDto of(Post post) {
         return new PostDto(
                 post.getId().toString(),
-                post.getTitle(),
-                post.getAuthor(),
-                post.getContent()
+                post.getTitle().toString(),
+                post.getAuthor().toString(),
+                post.getContent().toString()
         );
     }
 

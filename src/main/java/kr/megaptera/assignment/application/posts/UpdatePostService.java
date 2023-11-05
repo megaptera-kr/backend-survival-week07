@@ -3,7 +3,9 @@ package kr.megaptera.assignment.application.posts;
 import jakarta.transaction.Transactional;
 import kr.megaptera.assignment.dtos.posts.UpdatePostDto;
 import kr.megaptera.assignment.exceptions.PostNotFound;
+import kr.megaptera.assignment.models.posts.Content;
 import kr.megaptera.assignment.models.posts.Post;
+import kr.megaptera.assignment.models.posts.Title;
 import kr.megaptera.assignment.repositories.PostRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,7 @@ public class UpdatePostService {
     public void updatePost(String id, UpdatePostDto updatePostDto) {
         Post postToBeUpdated = this.postRepository.findById(UUID.fromString(id)).orElseThrow(PostNotFound::new);
 
-        postToBeUpdated.setTitle(updatePostDto.getTitle());
-        postToBeUpdated.setContent(updatePostDto.getContent());
+        postToBeUpdated.setTitle(new Title(updatePostDto.getTitle()));
+        postToBeUpdated.setContent(new Content(updatePostDto.getContent()));
     }
 }

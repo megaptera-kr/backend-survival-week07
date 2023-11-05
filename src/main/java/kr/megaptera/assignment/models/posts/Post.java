@@ -13,23 +13,23 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @Column
-    private String title;
-    @Column
-    private String author;
-    @Column
-    private String content;
+    @Embedded
+    private Title title;
+    @Embedded
+    private Author author;
+    @Embedded
+    private Content content;
 
     private Post() {
     }
 
-    public Post(String title, String author, String content) {
+    public Post(Title title, Author author, Content content) {
         this.title = title;
         this.author = author;
         this.content = content;
     }
 
-    public Post(UUID id, String title, String author, String content) {
+    public Post(UUID id, Title title, Author author, Content content) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -40,23 +40,23 @@ public class Post {
         return id;
     }
 
-    public String getTitle() {
+    public Title getTitle() {
         return title;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public String getContent() {
+    public Content getContent() {
         return content;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(Title title) {
         this.title = title;
     }
 
-    public void setContent(String content) {
+    public void setContent(Content content) {
         this.content = content;
     }
 

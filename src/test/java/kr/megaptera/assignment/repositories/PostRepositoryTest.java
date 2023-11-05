@@ -1,7 +1,10 @@
 package kr.megaptera.assignment.repositories;
 
 import jakarta.transaction.Transactional;
+import kr.megaptera.assignment.models.posts.Author;
+import kr.megaptera.assignment.models.posts.Content;
 import kr.megaptera.assignment.models.posts.Post;
+import kr.megaptera.assignment.models.posts.Title;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +24,9 @@ class PostRepositoryTest {
     @Test
     @DisplayName("save")
     void testSave() {
-        String mockTitle = "title";
-        String mockAuthor = "author";
-        String mockContent = "content";
+        Title mockTitle = new Title("title");
+        Author mockAuthor = new Author("author");
+        Content mockContent = new Content("content");
 
         int initialPostSize = this.postRepository.findAll().size();
 
@@ -49,10 +52,10 @@ class PostRepositoryTest {
     @Test
     @DisplayName("findById")
     void testFindById() {
-        String mockTitle = "title";
-        String mockAuthor = "author";
-        String mockContent = "content";
-        
+        Title mockTitle = new Title("title");
+        Author mockAuthor = new Author("author");
+        Content mockContent = new Content("content");
+
         Post newPost = new Post(mockTitle, mockAuthor, mockContent);
 
         this.postRepository.save(newPost);
@@ -65,9 +68,9 @@ class PostRepositoryTest {
     @Test
     @DisplayName("delete")
     void testDelete() {
-        String mockTitle = "title";
-        String mockAuthor = "author";
-        String mockContent = "content";
+        Title mockTitle = new Title("title");
+        Author mockAuthor = new Author("author");
+        Content mockContent = new Content("content");
 
         int initialPostSize = this.postRepository.findAll().size();
 

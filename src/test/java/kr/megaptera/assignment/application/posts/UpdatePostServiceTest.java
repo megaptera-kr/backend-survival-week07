@@ -2,7 +2,10 @@ package kr.megaptera.assignment.application.posts;
 
 import jakarta.transaction.Transactional;
 import kr.megaptera.assignment.dtos.posts.UpdatePostDto;
+import kr.megaptera.assignment.models.posts.Author;
+import kr.megaptera.assignment.models.posts.Content;
 import kr.megaptera.assignment.models.posts.Post;
+import kr.megaptera.assignment.models.posts.Title;
 import kr.megaptera.assignment.repositories.PostRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -36,12 +39,12 @@ class UpdatePostServiceTest {
     @DisplayName("updatePost")
     void testUpdatePostIfExists() {
         UUID mockId = UUID.randomUUID();
-        String mockTitle = "title";
-        String mockAuthor = "author";
-        String mockContent = "content";
+        Title mockTitle = new Title("title");
+        Author mockAuthor = new Author("author");
+        Content mockContent = new Content("content");
 
-        String mockNewTitle = "title2";
-        String mockNewContent = "content2";
+        Title mockNewTitle = new Title("title2");
+        Content mockNewContent = new Content("content2");
 
         Post mockPost = new Post(
                 mockId,
@@ -52,7 +55,7 @@ class UpdatePostServiceTest {
 
         given(postRepository.findById(mockId)).willReturn(Optional.of(mockPost));
 
-        UpdatePostDto mockUpdatePostDto = new UpdatePostDto(mockNewTitle, mockNewContent);
+        UpdatePostDto mockUpdatePostDto = new UpdatePostDto(mockNewTitle.toString(), mockNewContent.toString());
 
         updatePostService.updatePost(mockId.toString(), mockUpdatePostDto);
 

@@ -3,7 +3,10 @@ package kr.megaptera.assignment.application.posts;
 import jakarta.transaction.Transactional;
 import kr.megaptera.assignment.dtos.posts.CreatePostDto;
 import kr.megaptera.assignment.dtos.posts.PostDto;
+import kr.megaptera.assignment.models.posts.Author;
+import kr.megaptera.assignment.models.posts.Content;
 import kr.megaptera.assignment.models.posts.Post;
+import kr.megaptera.assignment.models.posts.Title;
 import kr.megaptera.assignment.repositories.PostRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +21,9 @@ public class CreatePostService {
 
     public PostDto createPost(CreatePostDto createPostDto) {
         Post newPost = new Post(
-                createPostDto.getTitle(),
-                createPostDto.getAuthor(),
-                createPostDto.getContent()
+                new Title(createPostDto.getTitle()),
+                new Author(createPostDto.getAuthor()),
+                new Content(createPostDto.getContent())
         );
 
         this.postRepository.save(newPost);
