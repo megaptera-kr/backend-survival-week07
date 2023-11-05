@@ -3,6 +3,7 @@ package kr.megaptera.assignment.application.comments;
 import jakarta.transaction.Transactional;
 import kr.megaptera.assignment.dtos.comments.UpdateCommentDto;
 import kr.megaptera.assignment.exceptions.CommentNotFound;
+import kr.megaptera.assignment.models.columns.Content;
 import kr.megaptera.assignment.models.comments.Comment;
 import kr.megaptera.assignment.repositories.CommentRepository;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,6 @@ public class UpdateCommentService {
     public void updateComment(String commentId, UpdateCommentDto updateCommentDto) {
         Comment comment = this.commentRepository.findById(UUID.fromString(commentId)).orElseThrow(CommentNotFound::new);
 
-        comment.setContent(updateCommentDto.getContent());
+        comment.setContent(new Content(updateCommentDto.getContent()));
     }
 }

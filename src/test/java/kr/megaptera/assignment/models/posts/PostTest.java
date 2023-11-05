@@ -26,7 +26,7 @@ class PostTest {
 
         Post newPost = new Post(mockPostTitle, mockPostAuthor, mockPostContent);
 
-        newPost.addComment(mockCommentAuthor, mockCommentContent);
+        newPost.addComment(new Author(mockCommentAuthor), new Content(mockCommentContent));
 
         assertThat(newPost.findAllComments()).hasSize(1);
     }

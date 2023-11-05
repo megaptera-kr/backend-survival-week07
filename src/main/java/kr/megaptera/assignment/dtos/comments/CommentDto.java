@@ -35,8 +35,8 @@ public class CommentDto {
         return new CommentDto(
                 comment.getId().toString(),
                 comment.getPostId().toString(),
-                comment.getAuthor(),
-                comment.getContent()
+                comment.getAuthor().toString(),
+                comment.getContent().toString()
         );
     }
 }

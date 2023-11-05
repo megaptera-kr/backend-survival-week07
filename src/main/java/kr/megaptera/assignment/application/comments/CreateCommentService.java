@@ -3,6 +3,8 @@ package kr.megaptera.assignment.application.comments;
 import jakarta.transaction.Transactional;
 import kr.megaptera.assignment.dtos.comments.CreateCommentDto;
 import kr.megaptera.assignment.exceptions.PostNotFound;
+import kr.megaptera.assignment.models.columns.Author;
+import kr.megaptera.assignment.models.columns.Content;
 import kr.megaptera.assignment.models.posts.Post;
 import kr.megaptera.assignment.repositories.PostRepository;
 import org.springframework.stereotype.Service;
@@ -22,8 +24,8 @@ public class CreateCommentService {
         Post post = this.postRepository.findById(UUID.fromString(postId)).orElseThrow(PostNotFound::new);
 
         post.addComment(
-                createCommentDto.getAuthor(),
-                createCommentDto.getContent()
+                new Author(createCommentDto.getAuthor()),
+                new Content(createCommentDto.getContent())
         );
     }
 }

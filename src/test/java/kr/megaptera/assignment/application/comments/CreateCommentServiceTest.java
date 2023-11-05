@@ -2,6 +2,8 @@ package kr.megaptera.assignment.application.comments;
 
 import jakarta.transaction.Transactional;
 import kr.megaptera.assignment.dtos.comments.CreateCommentDto;
+import kr.megaptera.assignment.models.columns.Author;
+import kr.megaptera.assignment.models.columns.Content;
 import kr.megaptera.assignment.models.posts.Post;
 import kr.megaptera.assignment.repositories.PostRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -45,6 +47,6 @@ class CreateCommentServiceTest {
 
         createCommentService.createComment(mockPostId.toString(), createCommentDto);
 
-        verify(mockPost).addComment(mockCommentAuthor, mockCommentContent);
+        verify(mockPost).addComment(new Author(mockCommentAuthor), new Content(mockCommentContent));
     }
 }

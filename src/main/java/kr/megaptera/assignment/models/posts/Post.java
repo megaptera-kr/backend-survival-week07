@@ -67,7 +67,7 @@ public class Post {
     @JoinColumn(name = "postId")
     private final List<Comment> commentList = new ArrayList<>();
 
-    public void addComment(String author, String content) {
+    public void addComment(Author author, Content content) {
         Comment newComment = new Comment(author, content);
 
         this.commentList.add(newComment);

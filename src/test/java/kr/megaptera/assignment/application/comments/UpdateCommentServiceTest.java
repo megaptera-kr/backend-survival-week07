@@ -3,6 +3,8 @@ package kr.megaptera.assignment.application.comments;
 import jakarta.transaction.Transactional;
 import kr.megaptera.assignment.dtos.comments.UpdateCommentDto;
 import kr.megaptera.assignment.exceptions.CommentNotFound;
+import kr.megaptera.assignment.models.columns.Author;
+import kr.megaptera.assignment.models.columns.Content;
 import kr.megaptera.assignment.models.comments.Comment;
 import kr.megaptera.assignment.repositories.CommentRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,10 +39,10 @@ class UpdateCommentServiceTest {
     void testUpdateCommentIfExists() {
         UUID mockCommentId = UUID.randomUUID();
         UUID mockPostId = UUID.randomUUID();
-        String mockCommentAuthor = "author";
-        String mockCommentContent = "content";
+        Author mockCommentAuthor = new Author("author");
+        Content mockCommentContent = new Content("content");
 
-        String mockCommentNewContent = "content2";
+        Content mockCommentNewContent = new Content("content2");
 
         Comment comment = new Comment(
                 mockCommentId,
@@ -51,7 +53,7 @@ class UpdateCommentServiceTest {
 
         given(commentRepository.findById(mockCommentId)).willReturn(Optional.of(comment));
 
-        UpdateCommentDto updateCommentDto = new UpdateCommentDto(mockCommentNewContent);
+        UpdateCommentDto updateCommentDto = new UpdateCommentDto(mockCommentNewContent.toString());
 
         this.updateCommentService.updateComment(mockCommentId.toString(), updateCommentDto);
 

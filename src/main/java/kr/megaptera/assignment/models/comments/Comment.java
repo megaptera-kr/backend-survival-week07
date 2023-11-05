@@ -1,6 +1,8 @@
 package kr.megaptera.assignment.models.comments;
 
 import jakarta.persistence.*;
+import kr.megaptera.assignment.models.columns.Author;
+import kr.megaptera.assignment.models.columns.Content;
 
 import java.util.UUID;
 
@@ -12,19 +14,19 @@ public class Comment {
     @Column
     private UUID postId;
     @Column
-    private String author;
+    private Author author;
     @Column
-    private String content;
+    private Content content;
 
     private Comment() {
     }
 
-    public Comment(String author, String content) {
+    public Comment(Author author, Content content) {
         this.author = author;
         this.content = content;
     }
 
-    public Comment(UUID id, UUID postId, String author, String content) {
+    public Comment(UUID id, UUID postId, Author author, Content content) {
         this.id = id;
         this.postId = postId;
         this.author = author;
@@ -39,15 +41,15 @@ public class Comment {
         return postId;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public String getContent() {
+    public Content getContent() {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(Content content) {
         this.content = content;
     }
 }
