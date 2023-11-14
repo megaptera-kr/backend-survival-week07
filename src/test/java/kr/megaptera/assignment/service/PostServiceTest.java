@@ -24,10 +24,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest
-@SqlGroup({
-        @Sql(value = "classpath:/sql/postServiceTest.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD),
-        @Sql(value = "classpath:/sql/deleteAllData.sql", executionPhase =  Sql.ExecutionPhase.AFTER_TEST_METHOD)
-})
 public class PostServiceTest {
     private PostRepository postRepository;
     private PostService postService;

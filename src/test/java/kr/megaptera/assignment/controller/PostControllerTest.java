@@ -22,73 +22,57 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(PostController.class)
-class PostControllerTest {
+public class PostControllerTest {
+
     @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
     private PostService postService;
 
-//    private PostRepository postRepository;
-//
-//    @BeforeEach
-//    void setUp() {
-//        postRepository = mock(PostRepository.class);
-//    }
-//
-//    @Test
-//    @DisplayName("게시물 생성")
-//    void create() {
-//        //given
-//        PostCreateRequest newPost = new PostCreateRequest("제목", "작성자", "내용");
-//        //when
-//        postService.create(newPost);
-//        //then
-//        verify(postRepository).save(any(Post.class));
-//    }
-//
-//    @Test
-//    @DisplayName("게시물 목록조회")
-//    void list() {
-//        //given
-//        //when
-//        List<PostResponse> postList = postService.list();
-//        //then
-//        verify(postRepository).findAll();
-//    }
-//
-//    @Test
-//    @DisplayName("게시물 조회")
-//    void detail() {
-//        //given
-//        PostResponse postResponse = postService.detail("TSID1");
-//        //when
-//        //then
-//        assertThat(postResponse.title()).isEqualTo("첫 번째 글 제목");
-//    }
-//
-//    @Test
-//    @DisplayName("게시물 수정")
-//    void update() {
-//        //given
-//        PostUpdateRequest postUpdateRequest = new PostUpdateRequest("동재업데이트", "으악");
-//        //when
-//        postService.update(postUpdateRequest, "TSID1");
-//        PostResponse updatePostResponse = postService.detail("TSID1");
-//        //then
-//        assertThat(updatePostResponse.title()).isEqualTo("동재업데이트");
-//    }
-//
-//    @Test
-//    @DisplayName("게시물 삭제")
-//    void delete() {
-//        //given
-//        String postId = "TSID3";
-//
-//        //when
-//        Optional<Post> post = postRepository.findById(postId);
-//        post.ifPresent(foundPost -> postService.delete(foundPost.getId()));
-//
-//        //then
-//        post.ifPresent(foundPost -> verify(postRepository).delete(foundPost));
-//    }
+    private final String postId = "testPostId";
+
+    @Test
+    void shouldReturnPostsList() throws Exception {
+
+        mockMvc.perform(get("/posts"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void shouldReturnPostDetail() throws Exception {
+
+        mockMvc.perform(get("/posts/" + postId))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void shouldCreatePost() throws Exception {
+        String jsonRequest = "{\"title\":\"Test Title\", \"content\":\"Test Content\"}";
+
+        mockMvc.perform(post("/posts")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequest))
+                .andExpect(status().isCreated());
+    }
+
+    @Test
+    void shouldUpdatePost() throws Exception {
+        String jsonRequest = "{\"title\":\"Updated Title\", \"content\":\"Updated Content\"}";
+
+        mockMvc.perform(patch("/posts/" + postId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequest))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    void shouldDeletePost() throws Exception {
+        mockMvc.perform(delete("/posts/" + postId))
+                .andExpect(status().isNoContent());
+    }
 }

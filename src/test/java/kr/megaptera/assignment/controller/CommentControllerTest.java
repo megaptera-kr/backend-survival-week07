@@ -6,6 +6,7 @@ import kr.megaptera.assignment.dto.PostResponse;
 import kr.megaptera.assignment.dto.PostUpdateRequest;
 import kr.megaptera.assignment.model.Post;
 import kr.megaptera.assignment.repositories.PostRepository;
+import kr.megaptera.assignment.service.CommentService;
 import kr.megaptera.assignment.service.PostService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -23,73 +24,61 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(CommentController.class)
-class CommentControllerTest {
-//    @Autowired
-//    private PostService postService;
-//
-//    private PostRepository postRepository;
-//
-//    @BeforeEach
-//    void setUp() {
-//        postRepository = mock(PostRepository.class);
-//    }
-//
-//    @Test
-//    @DisplayName("게시물 생성")
-//    void create() {
-//        //given
-//        PostCreateRequest newPost = new PostCreateRequest("제목", "작성자", "내용");
-//        //when
-//        postService.create(newPost);
-//        //then
-//        verify(postRepository).save(any(Post.class));
-//    }
-//
-//    @Test
-//    @DisplayName("게시물 목록조회")
-//    void list() {
-//        //given
-//        //when
-//        List<PostResponse> postList = postService.list();
-//        //then
-//        verify(postRepository).findAll();
-//    }
-//
-//    @Test
-//    @DisplayName("게시물 조회")
-//    void detail() {
-//        //given
-//        PostResponse postResponse = postService.detail("TSID1");
-//        //when
-//        //then
-//        assertThat(postResponse.title()).isEqualTo("첫 번째 글 제목");
-//    }
-//
-//    @Test
-//    @DisplayName("게시물 수정")
-//    void update() {
-//        //given
-//        PostUpdateRequest postUpdateRequest = new PostUpdateRequest("동재업데이트", "으악");
-//        //when
-//        postService.update(postUpdateRequest, "TSID1");
-//        PostResponse updatePostResponse = postService.detail("TSID1");
-//        //then
-//        assertThat(updatePostResponse.title()).isEqualTo("동재업데이트");
-//    }
-//
-//    @Test
-//    @DisplayName("게시물 삭제")
-//    void delete() {
-//        //given
-//        String postId = "TSID3";
-//
-//        //when
-//        Optional<Post> post = postRepository.findById(postId);
-//        post.ifPresent(foundPost -> postService.delete(foundPost.getId()));
-//
-//        //then
-//        post.ifPresent(foundPost -> verify(postRepository).delete(foundPost));
-//    }
+public class CommentControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private CommentService commentService;
+
+    // 예시를 위한 테스트 데이터
+    private final String postId = "testPostId";
+    private final String commentId = "testCommentId";
+
+    @BeforeEach
+    void setUp() {
+        // 필요한 경우 여기에 초기화 코드를 작성합니다.
+    }
+
+    @Test
+    void shouldReturnCommentsList() throws Exception {
+        mockMvc.perform(get("/comments")
+                        .param("postId", postId))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void shouldCreateComment() throws Exception {
+        String jsonRequest = "{\"content\":\"Test Comment\"}";
+
+        mockMvc.perform(post("/comments")
+                        .param("postId", postId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequest))
+                .andExpect(status().isCreated());
+    }
+
+    @Test
+    void shouldUpdateComment() throws Exception {
+        String jsonRequest = "{\"content\":\"Updated Comment\"}";
+
+        mockMvc.perform(patch("/comments/" + commentId)
+                        .param("postId", postId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequest))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    void shouldDeleteComment() throws Exception {
+        mockMvc.perform(delete("/comments/" + commentId)
+                        .param("postId", postId))
+                .andExpect(status().isNoContent());
+    }
 }
+
