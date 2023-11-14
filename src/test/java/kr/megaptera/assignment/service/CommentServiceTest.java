@@ -21,7 +21,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
 public class CommentServiceTest {
     private CommentService commentService;
     private CommentRepository commentRepository;
