@@ -66,7 +66,7 @@ public class CommentServiceTest {
         given(commentRepository.findById("COMMENT1")).willReturn(Optional.of(existingComment));
         CommentUpdateRequest commentUpdateRequest = new CommentUpdateRequest("동재업데이트");
         //when
-        commentService.update(commentUpdateRequest, "COMMENT1");
+        commentService.update(commentUpdateRequest, "COMMENT1", "TSID1");
         //then
         Optional<Comment> comment = commentRepository.findById("COMMENT1");
         comment.ifPresent(Updatedcomment -> {

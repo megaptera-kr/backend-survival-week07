@@ -15,5 +15,6 @@ public class CommentUpdateRequest {
         this.content = content;
     }
 
-
+    public CommentUpdateRequest() {
+    }
 }

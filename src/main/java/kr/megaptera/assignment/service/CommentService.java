@@ -38,15 +38,13 @@ public class CommentService {
     public void create(CommentCreateRequest request, String postId) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new RuntimeException("Post not found"));
-
         Comment comment = new Comment();
-        comment.fromCreateRequest(request);
-        comment.setPost(post);
+        comment.fromCreateRequest(request, post);
 
         commentRepository.save(comment);
     }
     @Transactional
-    public void update(CommentUpdateRequest request, String id) {
+    public void update(CommentUpdateRequest request, String id, String postId) {
         Comment comment = commentRepository.findById(id).orElseThrow(() -> new NotFoundException("Comment with id " + id + " not found"));
         comment.fromUpdateRequest(request);
     }

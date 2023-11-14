@@ -82,11 +82,10 @@ public class Comment {
         return new CommentResponse(this.getId(), this.getAuthor(), this.getContent());
     }
 
-    public void fromCreateRequest(CommentCreateRequest request) {
-        new Comment(
-                request.getAuthor(),
-                request.getContent()
-        );
+    public void fromCreateRequest(CommentCreateRequest request, Post post) {
+        this.setAuthor(request.getAuthor());
+        this.setContent(request.getContent());
+        this.setPost(post);
     }
     public void fromUpdateRequest(CommentUpdateRequest request) {
         this.content = request.getContent();

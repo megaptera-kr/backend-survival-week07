@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/comments")
 public class CommentController {
     private final CommentService commentService;
@@ -36,7 +37,7 @@ public class CommentController {
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestBody CommentUpdateRequest request, @PathVariable String id, @RequestParam("postId") String postId) {
-        commentService.update(request,id);
+        commentService.update(request,id,postId);
     }
 
     @DeleteMapping("/{id}")
