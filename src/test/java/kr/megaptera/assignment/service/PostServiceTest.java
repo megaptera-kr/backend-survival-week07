@@ -106,7 +106,7 @@ public class PostServiceTest {
         postService.delete(existingPost.getId());
 
         //then
-        verify(postRepository).delete(any(Post.class));
+        verify(postRepository).deleteById(existingPost.getId());
     }
 
 
