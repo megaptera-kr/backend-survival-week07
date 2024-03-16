@@ -22,6 +22,10 @@ public class PostDto {
         this.author = post.author().toString();
     }
 
+    public PostDto(String id) {
+        this.id = id;
+    }
+
     public PostDto() {
     }
 

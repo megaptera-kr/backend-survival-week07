@@ -21,9 +21,19 @@ public class Post {
     private Post() {
     }
 
+    public Post(String id) {
+        this.id = id;
+    }
+
     public Post(Author author, Title title, Content content) {
         this.id = TsidCreator.getTsid().toString();
         this.author = author;
+        this.title = title;
+        this.content = content;
+    }
+
+    public Post(String id, Title title, Content content) {
+        this.id = id;
         this.title = title;
         this.content = content;
     }
