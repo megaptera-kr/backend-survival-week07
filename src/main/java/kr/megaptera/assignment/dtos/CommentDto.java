@@ -1,5 +1,7 @@
 package kr.megaptera.assignment.dtos;
 
+import kr.megaptera.assignment.models.Comment;
+
 public class CommentDto {
     String id;
     String postId;
@@ -14,6 +16,28 @@ public class CommentDto {
     }
 
     public CommentDto() {
+    }
+
+    public CommentDto(String postId, String content, String author) {
+        this.postId = postId;
+        this.content = content;
+        this.author = author;
+    }
+
+    public CommentDto(String postId) {
+        this.postId = postId;
+    }
+
+    public CommentDto(Comment comment) {
+        this.id = comment.id();
+        this.postId = comment.postId();
+        this.content = comment.content().toString();
+        this.author = comment.author().toString();
+    }
+
+    public CommentDto(String id, String postId) {
+        this.id = id;
+        this.postId = postId;
     }
 
     public String getId() {

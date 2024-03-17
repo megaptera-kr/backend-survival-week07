@@ -2,12 +2,14 @@ package kr.megaptera.assignment.controllers;
 
 import kr.megaptera.assignment.dtos.PostDto;
 import kr.megaptera.assignment.service.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/posts")
+@CrossOrigin
 public class PostController {
 
     private final PostListService postListService;
@@ -29,17 +31,33 @@ public class PostController {
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<PostDto> getPostList() {
         return postListService.getPostList();
     }
 
-    @GetMapping
-    public PostDto getPost(@PathVariable("postId") String postId) {
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public PostDto getPost(@PathVariable("id") String postId) {
         return postService.getPost(new PostDto(postId));
     }
 
     @PostMapping
-    public void insertPost(@RequestBody PostDto postDto){
-        postInsertService.insertPost()
+    @ResponseStatus(HttpStatus.CREATED)
+    public void insertPost(@RequestBody PostDto postDto) {
+        postInsertService.insertPost(postDto);
+    }
+
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updatePost(@PathVariable("id") String id, @RequestBody PostDto postDto) {
+        postDto.setId(id);
+        postUpdateService.updatePost(postDto);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletePost(@PathVariable("id") String id) {
+        postDeleteService.deletePost(new PostDto(id));
     }
 }
